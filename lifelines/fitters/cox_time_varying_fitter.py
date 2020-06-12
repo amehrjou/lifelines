@@ -698,6 +698,8 @@ See https://stats.stackexchange.com/questions/11109/how-to-deal-with-perfect-sep
             trivial_dataset = self.start_stop_and_events
             trivial_dataset = trivial_dataset.join(self.weights)
             trivial_dataset = trivial_dataset.reset_index()
+            print("trivial dataset")
+            print(trivial_dataset)
             ll_null = (
                 CoxTimeVaryingFitter()
                 .fit(

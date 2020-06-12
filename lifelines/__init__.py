@@ -36,6 +36,7 @@ __all__ = [
     "WeibullFitter",
     "ExponentialFitter",
     "CoxTimeVaryingFitter",
+    "CoxNonLinearTimeVaryingFitter",
     "AalenJohansenFitter",
     "LogNormalFitter",
     "GeneralizedGammaFitter",

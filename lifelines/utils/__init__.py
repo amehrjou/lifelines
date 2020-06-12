@@ -33,6 +33,7 @@ __all__ = [
     "add_covariate_to_timeline",
     "covariates_from_event_matrix",
     "find_best_parametric_model",
+    "download_from_rdatasets",
 ]
 
 
@@ -1801,7 +1802,7 @@ def find_best_parametric_model(
                     entry=entry,
                     alpha=alpha,
                     ci_labels=ci_labels,
-                    timeline=timeline
+                    timeline=timeline,
                 )
             score_ = eval(model)
 
@@ -1815,3 +1816,16 @@ def find_best_parametric_model(
             continue
 
     return best_model, best_score
+
+
+def download_from_rdatasets(package, name):
+    datasets = (
+        pd.read_csv("http://vincentarelbundock.github.com/Rdatasets/datasets.csv")
+        .loc[lambda x: x["Package"] == package]
+        .set_index("Item")
+    )
+    if not name in datasets.index:
+        raise ValueError(f"Dataset {name} not found.")
+    info = datasets.loc[name]
+    url = info.CSV
+    return pd.read_csv(url), info
